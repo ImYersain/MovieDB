@@ -1,6 +1,6 @@
 # MovieDB
 
-Here working only with js.
+Here working only with js. Modification on this project will be soon.
 
 /* Задания(Все только через js):
 
@@ -15,3 +15,6 @@ Here working only with js.
 Отсортировать их по алфавиту 
 
 5) Добавить нумерацию выведенных фильмов */
+
+
+to be continued ...
