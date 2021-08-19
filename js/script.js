@@ -14,36 +14,91 @@
 
 'use strict';
 
-const movieDB = {
-    movies: [
-        "Логан",
-        "Лига справедливости",
-        "Ла-ла лэнд",
-        "Одержимость",
-        "Скотт Пилигрим против..."
-    ]
-};
-
-const   promoAdv = document.querySelectorAll(".promo__adv img"),
-        poster = document.querySelector(".promo__bg"),
-        genre = poster.querySelector(".promo__genre"),
-        movieList = document.querySelector(".promo__interactive-list")
-        ;
+document.addEventListener('DOMContentLoaded', () => {
 
 
-promoAdv.forEach(item =>{
-    item.remove();
-});
+    const movieDB = {
+        movies: [
+            "Логан",
+            "Лига справедливости",
+            "Ла-ла лэнд",
+            "Одержимость",
+            "Скотт Пилигрим против..."
+        ]
+    };
+    
+    const   promoAdv = document.querySelectorAll(".promo__adv img"),
+            poster = document.querySelector(".promo__bg"),
+            genre = poster.querySelector(".promo__genre"),
+            movieList = document.querySelector(".promo__interactive-list"),
+            addForm = document.querySelector("form.add"),
+            addInput = addForm.querySelector(".adding__input"),
+            checkbox = addForm.querySelector("[type = 'checkbox']")
+            ;
+    
+    
+    const delAdv = (arr) => {
+        arr.forEach(item =>{
+        item.remove();
+        });
+    };
+        
+    
+    const makeChanges = () => {
+        genre.textContent = "Драма";
+        poster.style.backgroundImage = 'url("img/bg.jpg")';
+    };
+        
 
-genre.textContent = "Драма";
-poster.style.backgroundImage = 'url("img/bg.jpg")';
-movieList.innerHTML = "";
-movieDB.movies.sort();
 
-movieDB.movies.forEach((film,i) => {
-    movieList.innerHTML +=  `<li class="promo__interactive-item"> ${i + 1} ${film}
-                             <div class="delete"></div>
-                            </li>`;
+    const sortArr = (arr) => {
+        arr.sort((a,b)=> a-b);
+    };
+      
+   
+
+
+
+    addForm.addEventListener("submit",(event)=>{
+        event.preventDefault();
+        const newFilm = addInput.value,
+        favorite = checkbox.checked;
+
+        if(newFilm){
+            movieDB.movies.push(newFilm);
+            sortArr(movieDB.movies);
+        }
+
+        
+
+        createMovieList(movieDB.movies, movieList);
+        addForm.reset();
+    });
+
+
+
+
+    function createMovieList(films, parrent){
+       
+        
+        parrent.innerHTML = "";
+        films.forEach((film,i) => {
+            parrent.innerHTML +=  `<li class="promo__interactive-item"> ${i + 1} ${film}
+                                     <div class="delete"></div>
+                                    </li>`
+                                    ;
+        });
+    }
+
+
+    
+    delAdv(promoAdv);
+    makeChanges();
+    sortArr(movieDB.movies);
+    createMovieList(movieDB.movies, movieList);
+   
+
+
 });
 
 
