@@ -3,6 +3,8 @@
 Here working only with js. Modification on this project will be soon.
 (just for fun and practice)
 
+
+
 /* Задания(Все только через js):
 
 1) Удалить все рекламные блоки со страницы (правая часть сайта)
